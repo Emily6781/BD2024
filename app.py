@@ -4,7 +4,7 @@ import mysql.connector
 
 #Cristo :D
 
-app = Flask(_name_)
+app = Flask(__name__)
 
 #Conexión a la base de datos
 def create_connection():
@@ -66,5 +66,5 @@ def agregarDatos():
         return redirect('/')
         return template('add_data')
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     app.run()
