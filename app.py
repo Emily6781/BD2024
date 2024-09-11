@@ -4,7 +4,7 @@ import mysql.connector
 
 #Cristo :D
 
-app = Flask(__name__)
+app = Flask(_name_)
 
 #Conexión a la base de datos
 def create_connection():
@@ -58,13 +58,13 @@ def agregarDatos():
         codigo_postal_id = cursor.lastrowid
 
          # 5. Insertar Colonia
-        cursor.execute("INSERT INTO tcolonias (Nombre, TCiudades_Id, TCodigosP_Id) VALUES (%s, %s, %s)", (colonia, ciudad_id, codigo_postal_id))
-
+        cursor.execute("INSERT INTO tcolonias (Nombre,IdCiudad,	TCiudades_Id, TCiudades_TEstados_Id, TCodigosP_Id, TCodigosP_TCiudades_Id,	TCodigosP_TCiudades_TEstados_Id	) VALUES (%s, %s, %s, %s, %s, %s, %s)", (colonia, ciudad_id, ciudad_id, estado_id, codigo_postal_id, ciudad_id, estado_id))
+                                            #Nombre	IdCiudad	CodigoPostal	TCiudades_Id	TCiudades_TEstados_Id	TCodigosP_Id	TCodigosP_TCiudades_Id	TCodigosP_TCiudades_TEstados_Id
         connection.commit()
         connection.close()
 
         return redirect('/')
         return template('add_data')
 
-if __name__ == '__main__':
+if _name_ == '_main_':
     app.run()
