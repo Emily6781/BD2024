@@ -38,7 +38,7 @@ def agregarDatos():
         cursor = connection.cursor()
 
         #ingresar pais
-        cursor.execute("INSERT INTO tpaises (Nombre) VALUES (%s)",(pais,))
+        cursor.execute("INSERT INTO tpaises (Nombre) VALUES (%s)",(pais))
         connection.commit() #envia la decalraciòn al servidor de MySQL y confirma la transacciòn
         pais_id = cursor.lastrowid #devuelve el valor generado para el autoingramentable
 
