@@ -68,7 +68,7 @@
         </form>
     </div>
     <div class="form-dark">
-        <form method="POST" action="/registrar_datos2">
+        <form method="POST" action="/registrar_pais">
             <h5>Registrar Pais</h5>
             <div class="mb-3 input-group">
                 <label class="input-group-text" for="pais">Pais</label>
@@ -78,12 +78,12 @@
         </form>
     </div>
     <div class="form-dark">
-        <form method="POST" action="/registrar_datos2">
+        <form method="POST" action="/registrar_estado">
             <h5>Registrar Estado</h5>
             <div class="mb-3 input-group">
               <label for="paises">Pais:</label>
-              <select id="paises" name="paises">{% for pais in paises %}
-                <option value="{{ pais }}">{{ pais }}</option>{% endfor %}</select><br>
+              <select id="paises" name="pais_Id">{% for pais in paises %}
+                <option value="{{ pais.Id }}">{{ pais.Nombre }}</option>{% endfor %}</select><br>
             </div>
             <div class="mb-3 input-group">
                 <label class="input-group-text" for="estado">Estado</label>
@@ -93,27 +93,27 @@
         </form>
     </div>
     <div class="form-dark">
-        <form method="POST" action="/registrar_datos2">
+        <form method="POST" action="/registrar_ciudad">
             <h5>Registrar Ciudad</h5>
             <div class="mb-3 input-group">
               <label for="estados">Estado:</label>
-              <select id="estado" name="estados">{% for estado in estados %}
-                <option value="{{ estado }}">{{ estado }}</option>{% endfor %}</select><br>
+              <select id="estado" name="estado_Id">{% for estado in estados %}
+                <option value="{{ estado.Id }}">{{ estado.Nombre }}</option>{% endfor %}</select><br>
             </div>
             <div class="mb-3 input-group">
                 <label class="input-group-text" for="ciudad">Ciudad</label>
-                <input type="text" class="form-control" id="ciudad" name="ciudad" placeholder="Ingrese la ciudad" required>
+                <input type="text" class="form-control" id="ciudad" name="ciudad_Id" placeholder="Ingrese la ciudad" required>
             </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
     </div>
     <div class="form-dark">
-        <form method="POST" action="/registrar_datos2">
+        <form method="POST" action="/registrar_codigopostal">
             <h5>Registrar Codigo Postal</h5>
             <div class="mb-3 input-group">
               <label for="ciudades">Ciudad:</label>
-              <select id="ciudades" name="ciudades">{% for ciudad in ciudades %}
-                <option value="{{ ciudad }}">{{ ciudad }}</option>{% endfor %}</select><br>
+              <select id="ciudades" name="ciudad_Id">{% for ciudad in ciudades %}
+                <option value="{{ ciudad.Id }}">{{ ciudad.Nombre }}</option>{% endfor %}</select><br>
             </div>
             <div class="mb-3 input-group">
                 <label class="input-group-text" for="CodigoPostal">Codigo Postal</label>
@@ -123,31 +123,33 @@
         </form>
     </div>
     <div class="form-dark">
-        <form method="POST" action="/registrar_datos2">
-            <h5>Registrar Colonia</h5>
-            <div class="mb-3 input-group">
-              <label for="ciudades">Ciudad:</label>
-              <select id="ciudades" name="ciudades">{% for ciudad in ciudades %}
-                <option value="{{ ciudad }}">{{ ciudad }}</option>{% endfor %}</select><br>
-            </div>
-            <div class="mb-3 input-group">
-              <label for="CodigosPostales">Codigo Postal:</label>
-              <select id="CodigosPostales" name="CodigosPostales">{% for CodigoPostal in CodigosPostales %}
-                <option value="{{ CodigoPostal }}">{{ CodigoPostal }}</option>{% endfor %}</select><br>
-            </div>
-            <div class="mb-3 input-group">
-                <label class="input-group-text" for="colonia">Colonia</label>
-                <input type="text" class="form-control" id="colonia" name="colonia" placeholder="Ingrese la colonia" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
-        </form>
-    </div>
+      <form method="POST" action="/registrar_colonia">
+              <h5>Registrar Colonia</h5>
+              <div class="mb-3 input-group">
+                  <label for="ciudades">Ciudad:</label>
+                  <select id="ciudades" name="ciudad_id">
+                      {% for ciudad in ciudades %}
+                      <option value="{{ ciudad.Id }}">{{ ciudad.Nombre }}</option>
+                      {% endfor %}
+                  </select>
+                  <button type="submit" name="action" value="get_postal_codes" class="btn btn-secondary">Obtener Códigos Postales</button><br>
+              </div>
+              <div class="mb-3 input-group">
+                  <label for="CodigosPostales">Código Postal:</label>
+                  <select id="CodigosPostales" name="CodigosPostales">
+                      <!-- Opciones de códigos postales se llenarán en el servidor -->
+                  </select><br>
+              </div>
+              <div class="mb-3 input-group">
+                  <label class="input-group-text" for="colonia">Colonia</label>
+                  <input type="text" class="form-control" id="colonia" name="colonia" placeholder="Ingrese la colonia" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Enviar</button>
+          </form>
 </div>
 
-    <!-- Enlace al JavaScript de Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    </div>
-
+<!-- Enlace al JavaScript de Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
 </body>
