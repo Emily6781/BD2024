@@ -47,7 +47,7 @@ def RegistrarDatos():
                                             #Nombre	IdCiudad	CodigoPostal	TCiudades_Id	TCiudades_TEstados_Id	TCodigosP_Id	TCodigosP_TCiudades_Id	TCodigosP_TCiudades_TEstados_Id
         connection.commit()
         connection.close()
-        return('index.html')
+        return render_template('index.html')
 
 def AgregarDatos():
     return('add.html')

@@ -1,5 +1,6 @@
 body {
-    background-image: url("{{ url_for('static', filename='images/3d-rendering-planet-earth.jpg') }}");
+    padding-top: 150px;
+    background-image: url("{{ url_for('static', filename='images/3d-rendering-planet-earth.jpg') }} ");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -79,4 +80,102 @@ body {
 
 .bd-mode-toggle .dropdown-menu .active .bi {
     display: block !important;
+}
+
+
+
+/* Lo que estaba en la pagina add*/
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("{{ url_for('static', filename='images/3d-rendering-planet-earth.jpg') }} ");
+    /*background-image: url('static/planeta.jpg');*/
+    background-size: cover;
+    /* Para que la imagen cubra toda la pantalla */
+    background-position: center;
+    /* Centrar la imagen */
+    background-repeat: no-repeat;
+    /* Evitar que la imagen se repita */
+}
+
+.transparent-box {
+    margin-top: 100%;
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Centra los elementos horizontalmente */
+    align-items: flex-start;
+    /* Alinea los elementos al principio verticalmente */
+    background-color: rgba(255, 255, 255, 0.90);
+    /* Fondo blanco con .90 de transparencia */
+    padding: 20px;
+    /* Espaciado interior */
+    border-radius: 10px;
+    /* Borde redondeado */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Sombra */
+    min-height: 70vh;
+    /* Altura mínima igual al 100% de la altura de la ventana */
+    margin: 50px 400px;
+    /* Márgenes arriba y abajo de 20px, y cero en los lados izquierdo y derecho */
+}
+.centered-container {
+    display: flex;
+    flex-direction: column; /* Alinea los divs en columna */
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ocupa toda la altura de la ventana */
+    gap: 20px; /* Espacio entre los formularios, ajustable según tu preferencia */
+}
+
+.form-dark {
+    background-color: #333; /* Fondo oscuro para el formulario */
+    color: #fff; /* Texto blanco para contraste */
+    padding: 20px; /* Espacio interno del formulario */
+    border-radius: 8px; /* Bordes redondeados */
+    width: 500px; /* Ancho fijo para los formularios, ajustable según tu preferencia */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.form-dark .input-group-text {
+    background-color: #444; /* Fondo oscuro para los labels */
+    color: #fff; /* Texto blanco para los labels */
+}
+
+.form-dark .form-control {
+    background-color: #222; /* Fondo de los inputs */
+    color: #fff; /* Texto blanco en los inputs */
+    border: none; /* Borde de los inputs */
+}
+
+/*-----------------------------------------*/
+
+
+
+
+
+
+/*--------------------------------------------------------------------------------*/
+
+.form-dark .form-control::placeholder {
+    color: #ccc;
+    /* Color blanco para el texto del placeholder */
+    opacity: 1;
+    /* Asegura que la opacidad sea completa */
+}
+.form-dark .btn-primary {
+    background-color: white;
+    /* Color del botón */
+    border: none;
+    color: black;
+    /* Sin borde */
+}
+
+.form-dark .btn-primary:hover {
+    background-color: #000000;
+    /* Color del botón al pasar el ratón */
 }
