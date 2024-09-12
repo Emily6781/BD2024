@@ -136,28 +136,41 @@
 
     <div class="centered-container">
         <div class="form-dark">
-          <form method="POST" action="/agragar_datos">
-            <div class="form-group">
-                <label for="pais">País</label>
-                <input type="text" class="form-control" id="pais" name="pais" required>
-            </div>
-            <div class="form-group">
-                <label for="estado">Estado</label>
-                <input type="text" class="form-control" id="estado" name="estado" required>
-            </div>
-            <div class="form-group">
-                <label for="ciudad">Ciudad</label>
-                <input type="text" class="form-control" id="ciudad" name="ciudad" required>
-            </div>
-            <div class="form-group">
-                <label for="codigo_postal">Código Postal</label>
-                <input type="text" class="form-control" id="codigo_postal" name="codigo_postal" required>
-            </div>
-            <div class="form-group">
-                <label for="colonia">Colonia</label>
-                <input type="text" class="form-control" id="colonia" name="colonia" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <form action="agragar_datos">
+                <!-- Input Group para País -->
+                <div class="mb-3 input-group">
+                    <span class="input-group-text" id="country-addon">País</span>
+                    <input type="text" class="form-control" aria-label="País" aria-describedby="country-addon" placeholder="Ingrese su país">
+                </div>
+
+                <!-- Input Group para Estado -->
+                <div class="mb-3 input-group">
+                    <span class="input-group-text" id="state-addon">Estado</span>
+                    <input type="text" class="form-control" aria-label="Estado" aria-describedby="state-addon" placeholder="Ingrese su estado">
+                </div>
+                <!-- Input Group para Estado -->
+                <div class="mb-3 input-group">
+                    <span class="input-group-text" id="state-addon">Ciudad</span>
+                    <input type="text" class="form-control" aria-label="Ciudad" aria-describedby="state-addon" placeholder="Ingrese su ciudad">
+                </div>
+
+                <!-- Input Group para Código Postal -->
+                <div class="mb-3 input-group">
+                    <span class="input-group-text" id="postal-addon">Código Postal</span>
+                    <input type="text" class="form-control" aria-label="Código Postal" aria-describedby="postal-addon" placeholder="Ingrese su código postal">
+                </div>
+
+                <!-- Input Group para Colonia -->
+                <div class="mb-3 input-group">
+                    <span class="input-group-text" id="colony-addon">Colonia</span>
+                    <input type="text" class="form-control" aria-label="Colonia" aria-describedby="colony-addon" placeholder="Ingrese su colonia">
+                </div>
+
+                <!-- Botón de Enviar -->
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Enviar Datos</button>
+                </div>
+            </form>
         </div>
     </div>
 
