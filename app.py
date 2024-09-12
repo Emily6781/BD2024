@@ -53,7 +53,7 @@ def agregarDatos():
         ciudad_id = cursor.lastrowid
 
         # 4. Insertar Código Postal
-        cursor.execute("INSERT INTO tcodigosp (Codigo, TCiudades_Id, TCiudades_TEstados_Id) VALUES (%s, %s, %s)", (codigo_postal, ciudad_id, estado_id))
+        cursor.execute("INSERT INTO tcodigosp (Codigo, TCiudades_Id, TCiudades_TEstados_I) VALUES (%s, %s, %s)", (codigo_postal, ciudad_id, estado_id))
         connection.commit()
         codigo_postal_id = cursor.lastrowid
 
