@@ -38,22 +38,22 @@ def agregarDatos():
         cursor = connection.cursor()
 
         #ingresar pais
-        cursor.execute("INSERT INTO tpaises (Nombre) VALUES (%s)",(pais))
+        cursor.execute("INSERT INTO tpaises (Nombre) VALUES (%s)",(pais,))
         connection.commit() #envia la decalraciòn al servidor de MySQL y confirma la transacciòn
         pais_id = cursor.lastrowid #devuelve el valor generado para el autoingramentable
 
         #ingresar estado
-        cursor.execute("INSERT INTO testados (Nombre, TPaises_Id) VALUES (%s, %s)",(estado, pais_id))
+        cursor.execute("INSERT INTO testados (Nombre, TPaises_Id) VALUES (%s, %s)",(estado, pais_id,))
         connection.commit()
         estado_id = cursor.lastrowid
 
         #ingresar ciudad
-        cursor.execute("INSERT INTO tciudades (Nombre, TEstados_Id) VALUES (%s, %s)",(ciudad, estado_id))
+        cursor.execute("INSERT INTO tciudades (Nombre, TEstados_Id) VALUES (%s, %s)",(ciudad, estado_id,))
         connection.commit()
         ciudad_id = cursor.lastrowid
 
         # 4. Insertar Código Postal
-        cursor.execute("INSERT INTO tcodigosp (Codigo, TCiudades_Id, TCiudades_TEstados_I) VALUES (%s, %s, %s)", (codigo_postal, ciudad_id, estado_id))
+        cursor.execute("INSERT INTO tcodigosp (Codigo, TCiudades_Id, TCiudades_TEstados_Id) VALUES (%s, %s, %s)", (codigo_postal, ciudad_id, estado_id,))
         connection.commit()
         codigo_postal_id = cursor.lastrowid
 
