@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
-    <title>Cover Template · Bootstrap v5.3</title>
+    <title>registro de usuarios</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/cover/">
 
@@ -30,7 +30,12 @@
 
     <style>
         body {
-            background-image: url("{{ url_for('static', filename='images/3d-rendering-planet-earth.jpg') }}");
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('static\planeta.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -120,10 +125,10 @@
 <body class="d-flex h-100 text-center text-bg-dark">
     <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Inicio</a>
+            <a class="navbar-brand" href="#">UbicaMe!</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <span class="navbar-toggler-icon"></span>
+          </button>
             <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Registros</h5>
@@ -132,10 +137,10 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="index.html" aria-current="page" href="#">Inicio</a>
+                            <a class="nav-link active" aria-current="page" href="index.html">inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="agregar.html" href="#">Mis datos</a>
+                            <a class="nav-link" href="add.html">mis datos</a>
                         </li>
                         <li class="nav-item">
                             <a class="agregar.html" method="GET" href="/Tpaises">Paises</a>
@@ -167,7 +172,7 @@
             <h1>UbicaMe!</h1>
             <p class="lead">Da click para ver los registros de localizacion.</p>
             <p class="lead">
-                <a method="GET" href="/paginaAdd" class="btn btn-lg btn-light fw-bold border-white bg-white">Ir a Registros</a>
+                <a method="GET" href="add.html" class="btn btn-lg btn-light fw-bold border-white bg-white">Ir a Registros</a>
             </p>
         </main>
         <div class="TablasSQL">
