@@ -19,6 +19,119 @@ def create_connection():
 def index():
     return render_template('index.html')
 
+#Tabla de Paises
+@app.route('/Tpaises', methods = ['GET'])
+def TPais():
+    conn = create_connection()
+    cursor = conn.cursor()
+
+    # Consulta para obtener todos los usuarios
+    cursor.execute("SELECT * FROM tpaises")
+    tabla = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+    modo = "activoP"
+    return render_template('index.html', tabla=tabla, modo=modo)
+
+#Tabla de Estados
+@app.route('/Testados', methods = ['GET'])
+def TEstado():
+    conn = create_connection()
+    cursor = conn.cursor()
+
+    # Consulta para obtener todos los usuarios
+    cursor.execute("SELECT * FROM testados")
+    tabla = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+    modo = "activoE"
+    return render_template('index.html', tabla=tabla, modo=modo)
+
+#Tabla de Ciudades
+@app.route('/Tciudades', methods = ['GET'])
+def TCiudad():
+    conn = create_connection()
+    cursor = conn.cursor()
+
+    # Consulta para obtener todos los usuarios
+    cursor.execute("SELECT * FROM tciudades")
+    tabla = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+    modo = "activoC"
+    return render_template('index.html', tabla=tabla, modo=modo)
+
+#Tabla de Codigos postales
+@app.route('/Tcodigosp', methods = ['GET'])
+def TCodigoP():
+    conn = create_connection()
+    cursor = conn.cursor()
+
+    # Consulta para obtener todos los usuarios
+    cursor.execute("SELECT * FROM tcodigosp")
+    tabla = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+    modo = "activoCP"
+    return render_template('index.html', tabla=tabla, modo=modo)
+
+#Tabla de Codigos postales
+@app.route('/Tcolonias', methods = ['GET'])
+def TColonia():
+    conn = create_connection()
+    cursor = conn.cursor()
+
+    # Consulta para obtener todos los usuarios
+    cursor.execute("SELECT * FROM tcolonias")
+    tabla = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+    modo = "activoCO"
+    return render_template('index.html', tabla=tabla, modo=modo)
+
+#Elimina paises
+@app.route('/eliminaP', methods = ['POST'])
+def EliminaP():
+    #identificar el pais que queremos eliminar con el ID
+    ID_Pais = request.form['id']
+    connection = create_connection()
+    cursor = connection.cursor()
+
+    cursor.execute("DELETE FROM tpaises WHERE id = %s", (ID_Pais,))
+    connection.commit()
+
+    cursor.close()
+
+    return render_template('/')
+
+@app.route('/activarEd', methods = ['GET', 'POST'])
+def ActivarEd():
+    ID = request.form['id']
+    Tabla = request.form['tabla']
+    return render_template('update.html', tablaOpc = Tabla, IdOpc=ID)
+    #return redirect(url_for('/editarP', id=ID, tabla=Tabla))
+
+
+@app.route('/editarP', methods = ['GET', 'POST'])
+def EditarP():
+    if request.method == 'POST':
+        id = request.form['IdOpc']
+        tabla = request.form['tablaOpc']
+        nuevo_nom = request.form['Nuevo']
+        connection = create_connection()
+        cursor = connection.cursor()
+
+        if tabla == "tpaises":
+            cursor.execute("UPDATE tpaises SET Nombre = %s WHERE id = %s", ( nuevo_nom, id))
+            connection.commit()
+            cursor.close()
+            return redirect('/')
+
 #Página principal (index)
 @app.route('/paginaAdd', methods = ['GET'])
 def indexx():
