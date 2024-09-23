@@ -125,6 +125,43 @@
             background-color: rgba(58, 57, 57, 0.9);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-top: -200px;
+            color: white;
+        }
+        
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        table,
+        th,
+        td {
+            border: 1px solid white;
+            text-align: center;
+            padding: 10px;
+        }
+        
+        th {
+            background-color: #444;
+        }
+        
+        .btn {
+            margin: 5px;
+        }
+        
+        .btn-crear {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .btn-editar {
+            background-color: #ffc107;
+            color: white;
+        }
+        
+        .btn-eliminar {
+            background-color: #dc3545;
+            color: white;
         }
     </style>
 </head>
@@ -132,152 +169,107 @@
 
 <body class="d-flex  text-center text-bg-dark">
 
-    <div class="TablasSQL">
-        {%if modo == "activoP"%}
-        <div class="tabla_Pais">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for dato in tabla %}
-                    <tr>
-                        <td>{{ dato[0] }}</td>
-                        <td>{{ dato[1] }}</td>
-                        <td>
-                            <form class="" action="/activarEd" method="post">
-                                <input type="hidden" name="id" value="{{dato[0]}}">
-                                <input type="hidden" name="tabla" value="tpaises">
-                                <button type="submit" name="opcE">Editar</button>
+    <body class="d-flex text-center text-bg-dark">
+        <div class="TablasSQL">
+            {% if modo == "activoP" %}
+            <div class="tabla_Pais">
+                <h3>Paises</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for dato in tabla %}
+                        <tr>
+                            <td>{{ dato[0] }}</td>
+                            <td>{{ dato[1] }}</td>
+                            <td>
+                                <form action="/activarEd" method="post" class="d-inline">
+                                    <input type="hidden" name="id" value="{{ dato[0] }}">
+                                    <input type="hidden" name="tabla" value="tpaises">
+                                    <button type="submit" class="btn btn-editar">Editar</button>
+                                </form>
+                                <form action="/eliminaP" method="post" class="d-inline">
+                                    <input type="hidden" name="id" value="{{ dato[0] }}">
+                                    <button type="submit" class="btn btn-eliminar">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <button class="btn btn-crear">Agregar País</button> {{ formulario|safe }}
+            </div>
 
-                            </form>
-                            <form class="" action="/eliminaP" method="post">
-                                <input type="hidden" name="id" value="{{dato[0]}}">
-                                <button type="submit" name="opcD">Eliminar</button>
-                            </form>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            {{ formulario|safe }}
-        </div>
-        {%elif modo == "activoE"%}
-        <div class="tabla_Estados">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>ID_Pais</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for dato in tabla %}
-                    <tr>
-                        <td>{{ dato[0] }}</td>
-                        <td>{{ dato[1] }}</td>
-                        <td>{{ dato[2] }}</td>
-                        <td>
-                            <button type="button" name="opcE">Editar</button>
-                            <button type="button" name="opcD">Eliminar</button>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        {%elif modo == "activoC"%}
-        <div class="tabla_C">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>ID_Estado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for dato in tabla %}
-                    <tr>
-                        <td>{{ dato[0] }}</td>
-                        <td>{{ dato[1] }}</td>
-                        <td>{{ dato[2] }}</td>
-                        <td>
-                            <button type="button" name="opcE">Editar</button>
-                            <button type="button" name="opcD">Eliminar</button>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        {%elif modo == "activoCP"%}
-        <div class="tabla_CP">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Codigo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for dato in tabla %}
-                    <tr>
-                        <td>{{ dato[0] }}</td>
-                        <td>{{ dato[1] }}</td>
-                        <td>
-                            <button type="button" name="opcE">Editar</button>
-                            <button type="button" name="opcD">Eliminar</button>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        {%elif modo == "activoCO"%}
-        <div class="tabla_CO">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>ID_Ciudad</th>
-                        <th>ID_Codigo Postal</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for dato in tabla %}
-                    <tr>
-                        <td>{{ dato[0] }}</td>
-                        <td>{{ dato[1] }}</td>
-                        <td>{{ dato[2] }}</td>
-                        <td>{{ dato[4] }}</td>
-                        <td>
-                            <button type="button" name="opcE">Editar</button>
-                            <button type="button" name="opcD">Eliminar</button>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        {%else%}
-        <div class="">
-            <p>TablasSQL</p>
-        </div>
-        {% endif %}
-    </div>
-    <footer class="mt-auto text-white-50">
+            {% elif modo == "activoE" %}
+            <div class="tabla_Estados">
+                <h3>Estados</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>ID_Pais</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for dato in tabla %}
+                        <tr>
+                            <td>{{ dato[0] }}</td>
+                            <td>{{ dato[1] }}</td>
+                            <td>{{ dato[2] }}</td>
+                            <td>
+                                <button class="btn btn-editar">Editar</button>
+                                <button class="btn btn-eliminar">Eliminar</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <button class="btn btn-crear">Agregar Estado</button>
+            </div>
 
-    </footer>
-    </div>
-    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
+            {% elif modo == "activoC" %}
+            <div class="tabla_C">
+                <h3>Ciudades</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>ID_Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for dato in tabla %}
+                        <tr>
+                            <td>{{ dato[0] }}</td>
+                            <td>{{ dato[1] }}</td>
+                            <td>{{ dato[2] }}</td>
+                            <td>
+                                <button class="btn btn-editar">Editar</button>
+                                <button class="btn btn-eliminar">Eliminar</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <button class="btn btn-crear">Agregar Ciudad</button>
+            </div>
+
+            {% endif %}
+        </div>
+
+        <footer class="mt-auto text-white-50">
+        </footer>
+        </div>
+        <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </body>
 
 </html>
