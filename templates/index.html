@@ -40,7 +40,7 @@
             background-position: center;
             background-repeat: no-repeat;
         }
-
+        
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -48,13 +48,13 @@
             -moz-user-select: none;
             user-select: none;
         }
-
+        
         @media (min-width: 768px) {
             .bd-placeholder-img-lg {
                 font-size: 3.5rem;
             }
         }
-
+        
         .b-example-divider {
             width: 100%;
             height: 3rem;
@@ -63,25 +63,25 @@
             border-width: 1px 0;
             box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
         }
-
+        
         .b-example-vr {
             flex-shrink: 0;
             width: 1.5rem;
             height: 100vh;
         }
-
+        
         .bi {
             vertical-align: -.125em;
             fill: currentColor;
         }
-
+        
         .nav-scroller {
             position: relative;
             z-index: 2;
             height: 2.75rem;
             overflow-y: hidden;
         }
-
+        
         .nav-scroller .nav {
             display: flex;
             flex-wrap: nowrap;
@@ -92,7 +92,7 @@
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
         }
-
+        
         .btn-bd-primary {
             --bd-violet-bg: #712cf9;
             --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
@@ -108,13 +108,17 @@
             --bs-btn-active-bg: #5a23c8;
             --bs-btn-active-border-color: #5a23c8;
         }
-
+        
         .bd-mode-toggle {
             z-index: 1500;
         }
-
+        
         .bd-mode-toggle .dropdown-menu .active .bi {
             display: block !important;
+        }
+        
+        .cover-container {
+            margin-top: -400px;
         }
     </style>
 
@@ -140,23 +144,9 @@
                             <a class="nav-link active" aria-current="page" href="index.html">inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="add.html">mis datos</a>
+                            <a class="nav-link" href="datos.html">mis datos</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="agregar.html" method="GET" href="/Tpaises">Paises</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="agregar.html" method="GET" href="/Testados">Estados</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="agregar.html" method="GET" href="/Tciudades">Ciudades</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="agregar.html" method="GET" href="/Tcolonias">Colonias</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="agregar.html" method="GET" href="/Tcodigosp">Codigos Postales</a>
-                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -167,160 +157,14 @@
         <header class="mb-auto">
             <!-- Header content removed as it's replaced by the new nav -->
         </header>
-
         <main class="px-3">
             <h1>UbicaMe!</h1>
-            <p class="lead">Da click para ver los registros de localizacion.</p>
+            <p class="lead">Da click para registrar tus datos</p>
             <p class="lead">
-                <a method="GET" href="add.html" class="btn btn-lg btn-light fw-bold border-white bg-white">Ir a Registros</a>
+                <a method="GET" href="add.html" class="btn btn-lg btn-light fw-bold border-white bg-white">click aqui</a>
             </p>
         </main>
-        <div class="TablasSQL">
-          {%if modo == "activoP"%}
-          <div class="tabla_Pais">
-           <table>
-               <thead>
-                   <tr>
-                       <th>ID</th>
-                       <th>Nombre</th>
-                   </tr>
-               </thead>
-               <tbody>
-                   {% for dato in tabla %}
-                   <tr>
-                       <td>{{ dato[0] }}</td>
-                       <td>{{ dato[1] }}</td>
-                       <td>
-                         <form class="" action="/activarEd" method="post">
-                           <input type="hidden" name="id" value="{{dato[0]}}">
-                           <input type="hidden" name="tabla" value="tpaises">
-                           <button type="submit" name="opcE">Editar</button>
 
-                         </form>
-                         <form class="" action="/eliminaP" method="post">
-                           <input type="hidden" name="id" value="{{dato[0]}}">
-                           <button type="submit" name="opcD">Eliminar</button>
-                         </form>
-                       </td>
-                   </tr>
-                   {% endfor %}
-               </tbody>
-           </table>
-           {{ formulario|safe }}
-          </div>
-          {%elif modo == "activoE"%}
-          <div class="tabla_Estados">
-           <table>
-               <thead>
-                   <tr>
-                       <th>ID</th>
-                       <th>Nombre</th>
-                       <th>ID_Pais</th>
-                       <th>Acciones</th>
-                   </tr>
-               </thead>
-               <tbody>
-                   {% for dato in tabla %}
-                   <tr>
-                       <td>{{ dato[0] }}</td>
-                       <td>{{ dato[1] }}</td>
-                       <td>{{ dato[2] }}</td>
-                       <td>
-                         <button type="button" name="opcE">Editar</button>
-                         <button type="button" name="opcD">Eliminar</button>
-                       </td>
-                   </tr>
-                   {% endfor %}
-               </tbody>
-           </table>
-          </div>
-          {%elif modo == "activoC"%}
-          <div class="tabla_C">
-           <table>
-               <thead>
-                   <tr>
-                       <th>ID</th>
-                       <th>Nombre</th>
-                       <th>ID_Estado</th>
-                   </tr>
-               </thead>
-               <tbody>
-                   {% for dato in tabla %}
-                   <tr>
-                       <td>{{ dato[0] }}</td>
-                       <td>{{ dato[1] }}</td>
-                       <td>{{ dato[2] }}</td>
-                       <td>
-                         <button type="button" name="opcE">Editar</button>
-                         <button type="button" name="opcD">Eliminar</button>
-                       </td>
-                   </tr>
-                   {% endfor %}
-               </tbody>
-           </table>
-          </div>
-          {%elif modo == "activoCP"%}
-          <div class="tabla_CP">
-           <table>
-               <thead>
-                   <tr>
-                       <th>ID</th>
-                       <th>Codigo</th>
-                   </tr>
-               </thead>
-               <tbody>
-                   {% for dato in tabla %}
-                   <tr>
-                       <td>{{ dato[0] }}</td>
-                       <td>{{ dato[1] }}</td>
-                       <td>
-                         <button type="button" name="opcE">Editar</button>
-                         <button type="button" name="opcD">Eliminar</button>
-                       </td>
-                   </tr>
-                   {% endfor %}
-               </tbody>
-           </table>
-          </div>
-          {%elif modo == "activoCO"%}
-          <div class="tabla_CO">
-           <table>
-               <thead>
-                   <tr>
-                       <th>ID</th>
-                       <th>Nombre</th>
-                       <th>ID_Ciudad</th>
-                       <th>ID_Codigo Postal</th>
-                       <th>Acciones</th>
-                   </tr>
-               </thead>
-               <tbody>
-                   {% for dato in tabla %}
-                   <tr>
-                       <td>{{ dato[0] }}</td>
-                       <td>{{ dato[1] }}</td>
-                       <td>{{ dato[2] }}</td>
-                       <td>{{ dato[4] }}</td>
-                       <td>
-                         <button type="button" name="opcE">Editar</button>
-                         <button type="button" name="opcD">Eliminar</button>
-                       </td>
-                   </tr>
-                   {% endfor %}
-               </tbody>
-           </table>
-          </div>
-          {%else%}
-          <div class="">
-            <p>TablasSQL</p>
-          </div>
-          {% endif %}
-        </div>
-        <footer class="mt-auto text-white-50">
-
-        </footer>
-    </div>
-    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>
