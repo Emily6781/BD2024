@@ -18,6 +18,15 @@ def create_connection():
 @app.route('/', methods = ['GET'])
 def index():
     return render_template('index.html')
+#pagina datos 
+@app.route('/paginaAdd', methods=['GET'])
+def pagina_add():
+    return render_template('add.html')
+#agregar
+@app.route('/agregar_datos', methods=['POST'])
+def agregarDatos():
+    # (Lógica para agregar datos)
+    return redirect('/')
 
 #Tabla de Paises
 @app.route('/Tpaises', methods = ['GET'])
