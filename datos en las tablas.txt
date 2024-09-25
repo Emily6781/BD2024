@@ -1,90 +1,69 @@
-------------------------------------------------------
-Datos iniciales para funcionar
-------------------------------------------------------
-INSERT INTO `tpaises`(`Pais`) VALUES ('México');
-INSERT INTO `testados`(`Estados`, `TPaises_ID`) VALUES ('Jalisco','1');
-INSERT INTO `tmunicipios`(`Municipio`, `TEstados_ID`) VALUES ('Puerto Vallarta','1');
-INSERT INTO `tcolonias`(`Colonia`, `TMunicipios_ID`) VALUES ('Pitillal','1');
-INSERT INTO `tempresa`(`Nombre`, `RFC`, `CalleyNumero`, `RazonSocial`, `TEmpresacol`, `TColonias_ID`) VALUES ('Abarrotes Martinez','CFJ937820F8','Emiliano Zapata #512','Abarroteria Familiar','Pitillal','1');
-INSERT INTO `tsucursal`(`Nombre`, `CalleyNumero`, `TEmpresa_ID`, `TColonias_ID`) VALUES ('Abarrotes Martinez Pitillal','Hidalgo #312','1','1');
-INSERT INTO `tcontactosemergencias`(`Nombre`, `Relacion`, `Telefono`) VALUES ('Magali Chavez','Amigo','3226795146');
-INSERT INTO `templeados`(`Nombre`, `RFC`, `NSS`, `FechaNacimiento`, `FechaIngreso`, `TSucursal_ID`, `TColonias_ID`, `TContactoEmergencia_ID`) VALUES ('Ramcez Perez','RPF098210R2','033164258','2004-10-06 12:10:10','2024-05-12 10:50:21','1','1','1');
+-- Insertar datos en la tabla TPaises
+-- Esta tabla no tiene dependencias
+INSERT INTO `practica`.`TPaises` (`Pais`) 
+VALUES 
+('México'),
+('Estados Unidos'),
+('Canadá');
 
-------------------------------------------------------
-Datos para rellenar (tomando en cuenta que estan los datos iniciales colocados)
-------------------------------------------------------
-INSERT INTO `tcolonias`(`Colonia`, `TMunicipios_ID`) VALUES ('Ixtapa','1');
-INSERT INTO `tcolonias`(`Colonia`, `TMunicipios_ID`) VALUES ('Las Glorias','1');
-INSERT INTO `tcolonias`(`Colonia`, `TMunicipios_ID`) VALUES ('Magisterio','1');
+-- Insertar datos en la tabla TEstados
+-- Requiere que los IDs de TPaises ya existan
+INSERT INTO `practica`.`TEstados` (`Estados`, `TPaises_ID`) 
+VALUES 
+('Ciudad de México', 1),   -- 1 es el ID de México
+('Nuevo León', 1),         -- 1 es el ID de México
+('California', 2),         -- 2 es el ID de Estados Unidos
+('Ontario', 3);            -- 3 es el ID de Canadá
 
-INSERT INTO `tsucursal`(`Nombre`, `CalleyNumero`, `TEmpresa_ID`, `TColonias_ID`) VALUES ('Abarrotes Martinez Ixtapa','Aldama #101','1','1');
-INSERT INTO `tsucursal`(`Nombre`, `CalleyNumero`, `TEmpresa_ID`, `TColonias_ID`) VALUES ('Abarrotes Martinez Las Glorias','Lucerna #152','1','1');
+-- Insertar datos en la tabla TMunicipios
+-- Requiere que los IDs de TEstados ya existan
+INSERT INTO `practica`.`TMunicipios` (`Municipio`, `TEstados_ID`) 
+VALUES 
+('Benito Juárez', 1),      -- 1 es el ID de Ciudad de México
+('Monterrey', 2),          -- 2 es el ID de Nuevo León
+('Los Ángeles', 3),        -- 3 es el ID de California
+('Toronto', 4);            -- 4 es el ID de Ontario
 
+-- Insertar datos en la tabla TColonias
+-- Requiere que los IDs de TMunicipios ya existan
+INSERT INTO `practica`.`TColonias` (`Colonia`, `TMunicipios_ID`) 
+VALUES 
+('Colonia Centro', 1),     -- 1 es el ID de Benito Juárez
+('San Pedro', 2),          -- 2 es el ID de Monterrey
+('Downtown', 3),           -- 3 es el ID de Los Ángeles
+('Old Toronto', 4);        -- 4 es el ID de Toronto
 
-INSERT INTO `tempresa`(`Nombre`, `RFC`, `CalleyNumero`, `RazonSocial`, `TEmpresacol`, `TColonias_ID`) VALUES ('Carniceria Becerra','BFH648513R9','Abazolo #321','Carnicerias Vallarta','Ixtapa','2');
-INSERT INTO `tsucursal`(`Nombre`, `CalleyNumero`, `TEmpresa_ID`, `TColonias_ID`) VALUES ('Carniceria Becerra Pitillal','Benito Juarez #563','2','1');
-INSERT INTO `tsucursal`(`Nombre`, `CalleyNumero`, `TEmpresa_ID`, `TColonias_ID`) VALUES ('Carniceria Becerra Ixtapa','Josefa #555','2','2');
-INSERT INTO `tsucursal`(`Nombre`, `CalleyNumero`, `TEmpresa_ID`, `TColonias_ID`) VALUES ('Carniceria Becerra Las Glorias','Iena #642','2','3');
-INSERT INTO `tsucursal`(`Nombre`, `CalleyNumero`, `TEmpresa_ID`, `TColonias_ID`) VALUES ('Carniceria Becerra Magisterio','Palma Real #785','2','4');
+-- Insertar datos en la tabla TEmpresa
+-- Requiere que los IDs de TColonias ya existan
+INSERT INTO `practica`.`TEmpresa` (`Nombre`, `RFC`, `CalleyNumero`, `RazonSocial`, `TEmpresacol`, `TColonias_ID`) 
+VALUES 
+('Tech Solutions', 'TS1234567890', 'Av. Insurgentes 123', 'Servicios Tecnológicos', NULL, 1),  -- Colonia Centro
+('Global Logistics', 'GL2345678901', 'Calle Principal 45', 'Logística Internacional', NULL, 2), -- San Pedro
+('Health Services', 'HS3456789012', 'Sunset Blvd 99', 'Servicios Médicos', NULL, 3);            -- Downtown
 
+-- Insertar datos en la tabla TContactosEmergencias
+-- Esta tabla no tiene dependencias
+INSERT INTO `practica`.`TContactosEmergencias` (`Nombre`, `Relacion`, `Telefono`) 
+VALUES 
+('Juan Pérez', 'Esposo', '5551234567'),
+('Ana García', 'Hermana', '5552345678'),
+('Pedro López', 'Amigo', '5553456789');
 
-INSERT INTO `tempresa`(`Nombre`, `RFC`, `CalleyNumero`, `RazonSocial`, `TEmpresacol`, `TColonias_ID`) VALUES ('Semillas y Cereales Paco','SCP751263G5','Progreso #121','Semillas y Cereales Puerto Vallarta','Magisterio','4');
-INSERT INTO `tsucursal`(`Nombre`, `CalleyNumero`, `TEmpresa_ID`, `TColonias_ID`) VALUES ('Semillas y Cereales Paco Ixtapa','El llanito #842','3','2');
-INSERT INTO `tsucursal`(`Nombre`, `CalleyNumero`, `TEmpresa_ID`, `TColonias_ID`) VALUES ('Semillas y Cereales Paco Magisterio','10 de Mayo #365','3','4');
+-- Insertar datos en la tabla TSucursal
+-- Requiere que los IDs de TEmpresa y TColonias ya existan
+INSERT INTO `practica`.`TSucursal` (`Nombre`, `CalleyNumero`, `TEmpresa_ID`, `TColonias_ID`) 
+VALUES 
+('Sucursal CDMX', 'Av. Reforma 101', 1, 1),   -- 1 es el ID de Tech Solutions en Colonia Centro
+('Sucursal Monterrey', 'Calle San Pedro 456', 1, 2), -- 1 es el ID de Tech Solutions en San Pedro
+('Sucursal Los Ángeles', 'Sunset Blvd 200', 2, 3);   -- 2 es el ID de Global Logistics en Downtown
 
-
-INSERT INTO `templeados`(`Nombre`, `RFC`, `NSS`, `FechaNacimiento`, `FechaIngreso`, `TSucursal_ID`, `TColonias_ID`, `TContactoEmergencia_ID`) VALUES ('Jose Galindo','JGO452158Q9','321671233','2004-10-06 12:20:03','2024-05-12 10:50:29','1','2','1');
-INSERT INTO `templeados`(`Nombre`, `RFC`, `NSS`, `FechaNacimiento`, `FechaIngreso`, `TSucursal_ID`, `TColonias_ID`, `TContactoEmergencia_ID`) VALUES ('Maria Huelto','MHM215463W3','215463254','2000-06-07 05:15:01','2024-05-12 10:55:21','1','3','1');
-
-INSERT INTO `templeados`(`Nombre`, `RFC`, `NSS`, `FechaNacimiento`, `FechaIngreso`, `TSucursal_ID`, `TColonias_ID`, `TContactoEmergencia_ID`) VALUES ('Ricardo Moreno','RMN485697E0','547852145','2003-11-01 01:12:08','2024-05-12 11:00:01','2','1','1');
-INSERT INTO `templeados`(`Nombre`, `RFC`, `NSS`, `FechaNacimiento`, `FechaIngreso`, `TSucursal_ID`, `TColonias_ID`, `TContactoEmergencia_ID`) VALUES ('Federico Garcia','FGP321678T4','698532165','2000-12-08 06:10:10','2024-05-12 11:05:22','2','2','1');
-INSERT INTO `templeados`(`Nombre`, `RFC`, `NSS`, `FechaNacimiento`, `FechaIngreso`, `TSucursal_ID`, `TColonias_ID`, `TContactoEmergencia_ID`) VALUES ('Guadalupe Chavez','GLP946258R3','789321654','2005-05-01 12:01:10','2024-05-12 11:10:21','2','3','1');
-INSERT INTO `templeados`(`Nombre`, `RFC`, `NSS`, `FechaNacimiento`, `FechaIngreso`, `TSucursal_ID`, `TColonias_ID`, `TContactoEmergencia_ID`) VALUES ('Fernanda Zarpas','FDA875134H6','333655248','2001-09-09 11:08:15','2024-05-12 12:25:05','2','4','1');
-
-INSERT INTO `templeados`(`Nombre`, `RFC`, `NSS`, `FechaNacimiento`, `FechaIngreso`, `TSucursal_ID`, `TColonias_ID`, `TContactoEmergencia_ID`) VALUES ('Izaias Chevrobski','IZC642596U8','885656211','2002-03-10 12:16:19','2024-05-12 12:30:28','3','2','1');
-INSERT INTO `templeados`(`Nombre`, `RFC`, `NSS`, `FechaNacimiento`, `FechaIngreso`, `TSucursal_ID`, `TColonias_ID`, `TContactoEmergencia_ID`) VALUES ('Miguel Morales','MMO654987K0','996652334','2004-10-04 08:22:13','2024-05-12 12:50:21','3','4','1');
-
-
---------------------------------------------------
-Para copiar y pegar en BD nuevecita de paquete (lo mismo que el de arriba pero sin el ---- enmedio)
---------------------------------------------------
-
-INSERT INTO `tpaises`(`Pais`) VALUES ('México');
-INSERT INTO `testados`(`Estados`, `TPaises_ID`) VALUES ('Jalisco','1');
-INSERT INTO `tmunicipios`(`Municipio`, `TEstados_ID`) VALUES ('Puerto Vallarta','1');
-INSERT INTO `tcolonias`(`Colonia`, `TMunicipios_ID`) VALUES ('Pitillal','1');
-INSERT INTO `tempresa`(`Nombre`, `RFC`, `CalleyNumero`, `RazonSocial`, `TEmpresacol`, `TColonias_ID`) VALUES ('Abarrotes Martinez','CFJ937820F8','Emiliano Zapata #512','Abarroteria Familiar','Pitillal','1');
-INSERT INTO `tsucursal`(`Nombre`, `CalleyNumero`, `TEmpresa_ID`, `TColonias_ID`) VALUES ('Abarrotes Martinez Pitillal','Hidalgo #312','1','1');
-INSERT INTO `tcontactosemergencias`(`Nombre`, `Relacion`, `Telefono`) VALUES ('Magali Chavez','Amigo','3226795146');
-INSERT INTO `templeados`(`Nombre`, `RFC`, `NSS`, `FechaNacimiento`, `FechaIngreso`, `TSucursal_ID`, `TColonias_ID`, `TContactoEmergencia_ID`) VALUES ('Ramcez Perez','RPF098210R2','033164258','2004-10-06 12:10:10','2024-05-12 10:50:21','1','1','1');
-
-INSERT INTO `tcolonias`(`Colonia`, `TMunicipios_ID`) VALUES ('Ixtapa','1');
-INSERT INTO `tcolonias`(`Colonia`, `TMunicipios_ID`) VALUES ('Las Glorias','1');
-INSERT INTO `tcolonias`(`Colonia`, `TMunicipios_ID`) VALUES ('Magisterio','1');
-
-INSERT INTO `tsucursal`(`Nombre`, `CalleyNumero`, `TEmpresa_ID`, `TColonias_ID`) VALUES ('Abarrotes Martinez Ixtapa','Aldama #101','1','1');
-INSERT INTO `tsucursal`(`Nombre`, `CalleyNumero`, `TEmpresa_ID`, `TColonias_ID`) VALUES ('Abarrotes Martinez Las Glorias','Lucerna #152','1','1');
-
-
-INSERT INTO `tempresa`(`Nombre`, `RFC`, `CalleyNumero`, `RazonSocial`, `TEmpresacol`, `TColonias_ID`) VALUES ('Carniceria Becerra','BFH648513R9','Abazolo #321','Carnicerias Vallarta','Ixtapa','2');
-INSERT INTO `tsucursal`(`Nombre`, `CalleyNumero`, `TEmpresa_ID`, `TColonias_ID`) VALUES ('Carniceria Becerra Pitillal','Benito Juarez #563','2','1');
-INSERT INTO `tsucursal`(`Nombre`, `CalleyNumero`, `TEmpresa_ID`, `TColonias_ID`) VALUES ('Carniceria Becerra Ixtapa','Josefa #555','2','2');
-INSERT INTO `tsucursal`(`Nombre`, `CalleyNumero`, `TEmpresa_ID`, `TColonias_ID`) VALUES ('Carniceria Becerra Las Glorias','Iena #642','2','3');
-INSERT INTO `tsucursal`(`Nombre`, `CalleyNumero`, `TEmpresa_ID`, `TColonias_ID`) VALUES ('Carniceria Becerra Magisterio','Palma Real #785','2','4');
-
-
-INSERT INTO `tempresa`(`Nombre`, `RFC`, `CalleyNumero`, `RazonSocial`, `TEmpresacol`, `TColonias_ID`) VALUES ('Semillas y Cereales Paco','SCP751263G5','Progreso #121','Semillas y Cereales Puerto Vallarta','Magisterio','4');
-INSERT INTO `tsucursal`(`Nombre`, `CalleyNumero`, `TEmpresa_ID`, `TColonias_ID`) VALUES ('Semillas y Cereales Paco Ixtapa','El llanito #842','3','2');
-INSERT INTO `tsucursal`(`Nombre`, `CalleyNumero`, `TEmpresa_ID`, `TColonias_ID`) VALUES ('Semillas y Cereales Paco Magisterio','10 de Mayo #365','3','4');
-
-
-INSERT INTO `templeados`(`Nombre`, `RFC`, `NSS`, `FechaNacimiento`, `FechaIngreso`, `TSucursal_ID`, `TColonias_ID`, `TContactoEmergencia_ID`) VALUES ('Jose Galindo','JGO452158Q9','321671233','2004-10-06 12:20:03','2024-05-12 10:50:29','1','2','1');
-INSERT INTO `templeados`(`Nombre`, `RFC`, `NSS`, `FechaNacimiento`, `FechaIngreso`, `TSucursal_ID`, `TColonias_ID`, `TContactoEmergencia_ID`) VALUES ('Maria Huelto','MHM215463W3','215463254','2000-06-07 05:15:01','2024-05-12 10:55:21','1','3','1');
-
-INSERT INTO `templeados`(`Nombre`, `RFC`, `NSS`, `FechaNacimiento`, `FechaIngreso`, `TSucursal_ID`, `TColonias_ID`, `TContactoEmergencia_ID`) VALUES ('Ricardo Moreno','RMN485697E0','547852145','2003-11-01 01:12:08','2024-05-12 11:00:01','2','1','1');
-INSERT INTO `templeados`(`Nombre`, `RFC`, `NSS`, `FechaNacimiento`, `FechaIngreso`, `TSucursal_ID`, `TColonias_ID`, `TContactoEmergencia_ID`) VALUES ('Federico Garcia','FGP321678T4','698532165','2000-12-08 06:10:10','2024-05-12 11:05:22','2','2','1');
-INSERT INTO `templeados`(`Nombre`, `RFC`, `NSS`, `FechaNacimiento`, `FechaIngreso`, `TSucursal_ID`, `TColonias_ID`, `TContactoEmergencia_ID`) VALUES ('Guadalupe Chavez','GLP946258R3','789321654','2005-05-01 12:01:10','2024-05-12 11:10:21','2','3','1');
-INSERT INTO `templeados`(`Nombre`, `RFC`, `NSS`, `FechaNacimiento`, `FechaIngreso`, `TSucursal_ID`, `TColonias_ID`, `TContactoEmergencia_ID`) VALUES ('Fernanda Zarpas','FDA875134H6','333655248','2001-09-09 11:08:15','2024-05-12 12:25:05','2','4','1');
-
-INSERT INTO `templeados`(`Nombre`, `RFC`, `NSS`, `FechaNacimiento`, `FechaIngreso`, `TSucursal_ID`, `TColonias_ID`, `TContactoEmergencia_ID`) VALUES ('Izaias Chevrobski','IZC642596U8','885656211','2002-03-10 12:16:19','2024-05-12 12:30:28','3','2','1');
-INSERT INTO `templeados`(`Nombre`, `RFC`, `NSS`, `FechaNacimiento`, `FechaIngreso`, `TSucursal_ID`, `TColonias_ID`, `TContactoEmergencia_ID`) VALUES ('Miguel Morales','MMO654987K0','996652334','2004-10-04 08:22:13','2024-05-12 12:50:21','3','4','1');
+-- Insertar datos en la tabla TEmpleados
+-- Requiere que los IDs de TSucursal, TColonias y TContactosEmergencias ya existan
+INSERT INTO `practica`.`TEmpleados` 
+(`Nombre`, `RFC`, `NSS`, `FechaNacimiento`, `FechaIngreso`, `TSucursal_ID`, `TColonias_ID`, `TContactoEmergencia_ID`) 
+VALUES 
+('Juan Pérez', 'PEJU850101XX1', '12345678901', '1985-01-01 00:00:00', '2010-06-15 09:00:00', 1, 1, 1),   -- Sucursal CDMX, Colonia Centro, Contacto Juan Pérez
+('Ana Martínez', 'MAAN900202XX2', '23456789012', '1990-02-02 00:00:00', '2015-09-23 09:00:00', 2, 2, 2), -- Sucursal Monterrey, San Pedro, Contacto Ana García
+('Carlos López', 'LOCA850303XX3', '34567890123', '1985-03-03 00:00:00', '2012-12-01 09:00:00', 1, 3, 3), -- Sucursal CDMX, Downtown, Contacto Pedro López
+('Lucía Gómez', 'GOLU920404XX4', '45678901234', '1992-04-04 00:00:00', '2018-03-10 09:00:00', 2, 1, 1), -- Sucursal Monterrey, Colonia Centro, Contacto Juan Pérez
+('Mario Ramírez', 'RAMA830505XX5', '56789012345', '1983-05-05 00:00:00', '2008-01-20 09:00:00', 3, 2, 2); -- Sucursal Los Ángeles, San Pedro, Contacto Ana García
