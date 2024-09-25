@@ -1,0 +1,58 @@
+-- Insertar datos en la tabla TPaises
+-- Esta tabla no tiene dependencias
+INSERT INTO `practica`.`TPaises` (`Pais`) 
+VALUES 
+('México'),
+('Estados Unidos'),
+('Canadá');
+
+-- Insertar datos en la tabla TEstados
+-- Requiere que los IDs de TPaises ya existan
+INSERT INTO `practica`.`TEstados` (`Estados`, `TPaises_ID`) 
+VALUES 
+('Ciudad de México', 1),   -- 1 es el ID de México
+('Nuevo León', 1),         -- 1 es el ID de México
+('California', 2),         -- 2 es el ID de Estados Unidos
+('Ontario', 3);            -- 3 es el ID de Canadá
+
+-- Insertar datos en la tabla TMunicipios
+-- Requiere que los IDs de TEstados ya existan
+INSERT INTO `practica`.`TMunicipios` (`Municipio`, `TEstados_ID`) 
+VALUES 
+('Benito Juárez', 1),      -- 1 es el ID de Ciudad de México
+('Monterrey', 2),          -- 2 es el ID de Nuevo León
+('Los Ángeles', 3),        -- 3 es el ID de California
+('Toronto', 4);            -- 4 es el ID de Ontario
+
+-- Insertar datos en la tabla TColonias
+-- Requiere que los IDs de TMunicipios ya existan
+INSERT INTO `practica`.`TColonias` (`Colonia`, `TMunicipios_ID`) 
+VALUES 
+('Colonia Centro', 1),     -- 1 es el ID de Benito Juárez
+('San Pedro', 2),          -- 2 es el ID de Monterrey
+('Downtown', 3),           -- 3 es el ID de Los Ángeles
+('Old Toronto', 4);        -- 4 es el ID de Toronto
+
+-- Insertar datos en la tabla TEmpresa
+-- Requiere que los IDs de TColonias ya existan
+INSERT INTO `practica`.`TEmpresa` (`Nombre`, `RFC`, `CalleyNumero`, `RazonSocial`, `TEmpresacol`, `TColonias_ID`) 
+VALUES 
+('Tech Solutions', 'TS1234567890', 'Av. Insurgentes 123', 'Servicios Tecnológicos', NULL, 1),  -- Colonia Centro
+('Global Logistics', 'GL2345678901', 'Calle Principal 45', 'Logística Internacional', NULL, 2), -- San Pedro
+('Health Services', 'HS3456789012', 'Sunset Blvd 99', 'Servicios Médicos', NULL, 3);            -- Downtown
+
+-- Insertar datos en la tabla TContactosEmergencias
+-- Esta tabla no tiene dependencias
+INSERT INTO `practica`.`TContactosEmergencias` (`Nombre`, `Relacion`, `Telefono`) 
+VALUES 
+('Juan Pérez', 'Esposo', '5551234567'),
+('Ana García', 'Hermana', '5552345678'),
+('Pedro López', 'Amigo', '5553456789');
+
+-- Insertar datos en la tabla TSucursal
+-- Requiere que los IDs de TEmpresa y TColonias ya existan
+INSERT INTO `practica`.`TSucursal` (`Nombre`, `CalleyNumero`, `TEmpresa_ID`, `TColonias_ID`) 
+VALUES 
+('Sucursal CDMX', 'Av. Reforma 101', 1, 1),   -- 1 es el ID de Tech Solutions en Colonia Centro
+('Sucursal Monterrey', 'Calle San Pedro 456', 1, 2), -- 1 es el ID de Tech Solutions en San Pedro
+('Sucursal Los Ángeles', 'Sunset Blvd 200', 2, 3);   -- 2 es el ID de Global Logistics en Downtown
